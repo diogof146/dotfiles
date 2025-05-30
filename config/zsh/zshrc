@@ -1,0 +1,13 @@
+export JAVA_HOME=$(/usr/libexec/java_home -v 21)
+
+eval "$(oh-my-posh init zsh --config $HOME/.poshthemes/custom_jblab_edit.json)"
+
+alias dotfiles='git -C ~/dotfiles'
+
+# Make zsh tab-completion case insensitive
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+# Ensure that completion is enabled
+autoload -U compinit
+compinit
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
