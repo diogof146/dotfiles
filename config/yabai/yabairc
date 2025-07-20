@@ -1,0 +1,48 @@
+#!/bin/sh
+
+sudo yabai --load-sa
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
+# General yabai settings
+yabai -m config window_placement second_child
+yabai -m config window_topmost off
+yabai -m config window_shadow on
+yabai -m config window_border on
+yabai -m config window_border_width 2
+yabai -m config window_border_color 0xff775759
+yabai -m config window_border_color_focused 0xffd75f5f
+yabai -m config window_animation_duration 0.0
+yabai -m config window_animation_frame_rate 120
+yabai -m config window_animation_easing linear
+yabai -m config layout float
+
+# Mouse settings
+yabai -m config mouse_follows_focus on
+yabai -m config mouse_modifier alt
+yabai -m config mouse_action1 move
+yabai -m config mouse_action2 resize
+yabai -m config mouse_drop_action swap
+
+# Padding
+yabai -m config window_gap 7
+
+# Window opacity
+yabai -m config window_opacity on
+yabai -m config active_window_opacity 1.0
+yabai -m config normal_window_opacity 0.9
+
+# Spaces
+yabai -m config --space 1 layout float
+yabai -m config --space 2 layout bsp
+yabai -m config --space 3 layout bsp
+
+# WezTerm always goes to space 2
+yabai -m rule --add app="WezTerm" space=2 manage=on
+
+# Apps that should ALWAYS float (regardless of space layout)
+yabai -m rule --add app="Spotify" manage=off
+yabai -m rule --add app="Calculator" manage=off
+yabai -m rule --add app="^System Preferences$" manage=off
+yabai -m rule --add app="^System Settings$" manage=off
+yabai -m rule --add app="^Finder$" manage=off
+yabai -m rule --add app="^Activity Monitor$" manage=off

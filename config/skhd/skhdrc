@@ -1,0 +1,73 @@
+# Change window focus
+ctrl + alt + cmd + shift - h : yabai -m window --focus west
+ctrl + alt + cmd + shift - j : yabai -m window --focus south
+ctrl + alt + cmd + shift - k : yabai -m window --focus north
+ctrl + alt + cmd + shift - l : yabai -m window --focus east
+
+# Change display focus
+shift + alt - h : yabai -m display --focus west
+shift + alt - l : yabai -m display --focus east
+
+# Toggle float/bsp for current space
+ctrl + alt + cmd + shift - g : yabai -m space --layout $(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "float" else "bsp" end')
+# Force current space to bsp
+ctrl + alt + cmd + shift - b : yabai -m space --layout bsp
+# Force current space to float
+ctrl + alt + cmd + shift - f : yabai -m space --layout float
+
+# Toggle window float/bsp
+ctrl + alt + cmd + shift - space : yabai -m window --toggle float --grid 1:1:0:0:1:1
+
+# Modifying the layout
+alt - r : yabai -m space --rotate 270
+alt - y : yabai -m space --mirror y-axis
+alt - x : yabai -m space --mirror x-axis
+
+# Resizing windows
+ctrl + alt - return : yabai -m window --grid 1:1:0:0:1:1
+ctrl + alt - e : yabai -m space --balance
+ctrl + alt + cmd + shift - return : yabai -m window --toggle zoom-fullscreen
+
+# Swap windows
+ctrl + alt - j : yabai -m window --swap south
+ctrl + alt - k : yabai -m window --swap north
+ctrl + alt - h : yabai -m window --swap west
+ctrl + alt - l : yabai -m window --swap east
+
+# Move and split
+ctrl + alt + shift - j : yabai -m window --warp south
+ctrl + alt + shift - k : yabai -m window --warp north
+ctrl + alt + shift - h : yabai -m window --warp west
+ctrl + alt + shift - l : yabai -m window --warp east
+
+# Move window to display left or right
+shift + ctrl - h : yabai -m window --display west; yabai -m display --focus west;
+shift + ctrl - l : yabai -m window --display east; yabai -m display --focus east;
+
+# Quick tile current window to left half
+ctrl + alt - left : yabai -m window --toggle float --grid 1:2:0:0:1:1
+
+# Quick tile current window to right half  
+ctrl + alt - right : yabai -m window --toggle float --grid 1:2:1:0:1:1
+
+# Move window to space and follow
+ctrl + alt + cmd + shift - 1 : \
+  APP_NAME=$(yabai -m query --windows --window | jq -r '.app'); \
+  WINDOW_ID=$(yabai -m query --windows --window | jq -r '.id'); \
+  yabai -m window $WINDOW_ID --space 1; \
+  osascript -e 'tell application "System Events" to key code 18 using {control down}'; \
+  sleep 0.1; \
+  osascript -e "tell application \"$APP_NAME\" to activate"; \
+  yabai -m window $WINDOW_ID --grid 1:1:0:0:1:1
+ctrl + alt + cmd + shift - 2 : yabai -m window --space 2; osascript -e 'tell application "System Events" to key code 19 using {control down}'
+
+# Focus spaces
+ctrl + alt + cmd + shift - m : osascript -e 'tell application "System Events" to key code 18 using {control down}'
+ctrl + alt + cmd + shift - t : osascript -e 'tell application "System Events" to key code 19 using {control down}'
+ctrl + alt + cmd + shift - v : osascript -e 'tell application "System Events" to key code 20 using {control down}'
+
+
+# Yabai
+ctrl + alt + cmd + shift - r : yabai --restart-service
+ctrl + alt + cmd + shift - p : yabai --stop-service
+ctrl + alt + cmd + shift - n : yabai --start-service
