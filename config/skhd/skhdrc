@@ -51,23 +51,31 @@ ctrl + alt - left : yabai -m window --toggle float --grid 1:2:0:0:1:1
 ctrl + alt - right : yabai -m window --toggle float --grid 1:2:1:0:1:1
 
 # Move window to space and follow
-ctrl + alt + cmd + shift - 1 : \
-  APP_NAME=$(yabai -m query --windows --window | jq -r '.app'); \
-  WINDOW_ID=$(yabai -m query --windows --window | jq -r '.id'); \
-  yabai -m window $WINDOW_ID --space 1; \
-  osascript -e 'tell application "System Events" to key code 18 using {control down}'; \
-  sleep 0.1; \
-  osascript -e "tell application \"$APP_NAME\" to activate"; \
-  yabai -m window $WINDOW_ID --grid 1:1:0:0:1:1
-ctrl + alt + cmd + shift - 2 : yabai -m window --space 2; osascript -e 'tell application "System Events" to key code 19 using {control down}'
+ctrl + alt + cmd + shift - 1 : yabai -m window --space 1; yabai -m space --focus 1;
+ctrl + alt + cmd + shift - 2 : yabai -m window --space 2; yabai -m space --focus 2
+ctrl + alt + cmd + shift - 3 : yabai -m window --space 2; yabai -m space --focus 3
+
 
 # Focus spaces
-ctrl + alt + cmd + shift - m : osascript -e 'tell application "System Events" to key code 18 using {control down}'
-ctrl + alt + cmd + shift - t : osascript -e 'tell application "System Events" to key code 19 using {control down}'
-ctrl + alt + cmd + shift - v : osascript -e 'tell application "System Events" to key code 20 using {control down}'
+ctrl + alt + cmd + shift - m : yabai -m space --focus 1
+ctrl + alt + cmd + shift - t : yabai -m space --focus 2
+ctrl + alt + cmd + shift - v : yabai -m space --focus 3
 
 
 # Yabai
 ctrl + alt + cmd + shift - r : yabai --restart-service
 ctrl + alt + cmd + shift - p : yabai --stop-service
 ctrl + alt + cmd + shift - n : yabai --start-service
+
+
+
+# Old move app back to first space and focus it command (to use if float layout and sip)
+# ctrl + alt + cmd + shift - 1 : \
+#   APP_NAME=$(yabai -m query --windows --window | jq -r '.app'); \
+#   WINDOW_ID=$(yabai -m query --windows --window | jq -r '.id'); \
+#   yabai -m window $WINDOW_ID --space 1; \
+#   osascript -e 'tell application "System Events" to key code 18 using {control down}'; \
+#   sleep 0.1; \
+#   osascript -e "tell application \"$APP_NAME\" to activate"; \
+#   yabai -m window $WINDOW_ID --grid 1:1:0:0:1:1
+
