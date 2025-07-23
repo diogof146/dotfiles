@@ -1,13 +1,30 @@
 export JAVA_HOME=$(/usr/libexec/java_home -v 21)
 
-eval "$(oh-my-posh init zsh --config $HOME/.poshthemes/custom_jblab_edit.json)"
+# Old Theme
+# eval "$(oh-my-posh init zsh --config $HOME/.poshthemes/custom_jblab_edit.json)"
 
+# Alias
 alias dotfiles='git -C ~/dotfiles'
+alias cd="z"
+
+# Zsh plugins
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Make zsh tab-completion case insensitive
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # Ensure that completion is enabled
 autoload -U compinit
 compinit
+
+# Zoxide init
+eval "$(zoxide init zsh)"
+
+# Starship prompt
+export STARSHIP_CONFIG="$HOME//.config/starship/starship.toml"
+eval "$(starship init zsh)"
+
+# Java
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
+
