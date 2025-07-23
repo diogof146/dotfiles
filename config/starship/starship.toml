@@ -1,0 +1,128 @@
+format = """
+$directory\
+${custom.sign}\
+$fill\
+$git_branch\
+$git_status\
+$python\
+$c\
+$cpp\
+$java\
+$lua\
+$nodejs\
+$package\
+$jobs\
+$cmd_duration\
+$line_break\
+$character"""
+
+add_newline = true
+palette = 'cyan_teal'
+
+[directory]
+style = 'bold fg:cyan'
+format = '[$path ]($style)'
+home_symbol = ' ~'
+truncation_length = 4
+truncation_symbol = '…/'
+truncate_to_repo = false
+
+[directory.substitutions]
+'Docs' = '󰈙'
+'Downloads' = ''
+'Music' = ''
+'Pictures' = ''
+'Desktop' = ''
+'Projects' = ''
+'.config' = ''
+'dotfiles' = ''
+'Uni' = ''
+
+[git_branch]
+style = 'bold fg:teal'
+symbol = ' '
+format = '[$symbol$branch ]($style)'
+
+[git_status]
+style = 'bold fg:teal'
+format = '([$all_status$ahead_behind]($style) )'
+conflicted = '󰞇 '
+ahead = '󰜷 ${count} '
+behind = '󰜮 ${count} '
+diverged = '󰆗 ${ahead_count}󰜷 ${behind_count}󰜮 '
+untracked = '? '
+stashed = '󰆓 '
+modified = '󰝤 '
+staged = '󰄬 '
+renamed = '󰕍 '
+deleted = '󰆴 '
+
+[fill]
+symbol = '─'
+style = 'faded_cyan'
+
+[python]
+style = 'dark_cyan'
+symbol = ' '
+format = '[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+pyenv_version_name = true
+pyenv_prefix = ''
+
+[c]
+symbol = ' '
+style = 'bold fg:dark_cyan'
+format = '[${symbol}]($style)'
+
+[cpp]
+symbol = ' '
+style = 'bold fg:dark_cyan'
+format = '[${symbol}]($style)'
+
+[java]
+symbol = ' '
+style = 'bold fg:dark_cyan'
+format = '[${symbol}(${version})]($style)'
+
+[lua]
+symbol = ' '
+style = 'bold fg:dark_cyan'
+format = '[${symbol}]($style)'
+
+[nodejs]
+style = 'bold fg:dark_cyan'
+symbol = ' '
+format = '[${symbol}${version}]($style)'
+
+[package]
+symbol = ' 󰏗 '
+style = 'bold fg:teal'
+format = '[${symbol}${version}]($style)'
+
+[jobs]
+symbol = ' '
+style = 'bold fg:dark_cyan'
+number_threshold = 1
+format = '[$symbol]($style)'
+
+[cmd_duration]
+min_time = 500
+style = 'fg:gray'
+format = '[ $duration]($style)'
+
+[custom.sign]
+command = '[[ "$PWD" != "$HOME" ]] && printf " 王"'
+when = true
+style = 'fg:cyan'
+
+[character]
+success_symbol = '[ᚦ](cyan)'
+error_symbol = '[✗](bold red) '
+
+[palettes.cyan_teal]
+dark_cyan = '#008b8b'
+cyan = '#00999c'
+teal = '#66c4c1'
+gray = '#434C5E'
+white = '#D8DEE9'
+faded_cyan = '#0A1F25'
+
