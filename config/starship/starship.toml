@@ -28,15 +28,16 @@ truncation_symbol = '…/'
 truncate_to_repo = false
 
 [directory.substitutions]
-'Docs' = '󰈙'
-'Downloads' = ''
-'Music' = ''
-'Pictures' = ''
-'Desktop' = ''
-'Projects' = ''
-'.config' = ''
-'dotfiles' = ''
-'Uni' = ''
+style = 'teal'
+'Documents/Docs' = ' 󰈙 '
+'Downloads' = '  '
+'Music' = '  '
+'Pictures' = '  '
+'Desktop' = '  '
+'Projects' = '  '
+'.config' = '  '
+'dotfiles' = '  '
+'Uni' = '  '
 
 [git_branch]
 style = 'bold fg:teal'
@@ -110,7 +111,21 @@ style = 'fg:gray'
 format = '[ $duration]($style)'
 
 [custom.sign]
-command = '[[ "$PWD" != "$HOME" ]] && printf " 王"'
+#command = '[[ "$PWD" != "$HOME" ]] && printf " 王"'
+command = '''
+if [[ "$PWD" != "$HOME" ]]; then
+  # Get the last directory name in the path
+  current_dir=$(basename "$PWD")
+  
+  # List of your special directories
+  special_dirs=("Docs" "Downloads" "Music" "Pictures" "Desktop" "Projects" ".config" "dotfiles" "Uni")
+  
+  # Check if current directory is not special
+  if ! printf '%s\n' "${special_dirs[@]}" | grep -qxF "$current_dir"; then
+    printf " 王"
+  fi
+fi
+'''
 when = true
 style = 'fg:cyan'
 
