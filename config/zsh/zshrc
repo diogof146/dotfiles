@@ -1,11 +1,14 @@
-export JAVA_HOME=$(/usr/libexec/java_home -v 21)
+neofetch
 
-# Old Theme
-# eval "$(oh-my-posh init zsh --config $HOME/.poshthemes/custom_jblab_edit.json)"
+EDITOR="nvim"
 
 # Alias
-alias dotfiles='git -C ~/dotfiles'
+alias dotfiles="git -C ~/dotfiles"
 alias cd="z"
+alias vim="nvim"
+alias vi="nvim"
+alias neovim='fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {+})"'
+alias n="clear && neofetch"
 
 # Zsh plugins
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -24,7 +27,13 @@ eval "$(zoxide init zsh)"
 export STARSHIP_CONFIG="$HOME//.config/starship/starship.toml"
 eval "$(starship init zsh)"
 
+# Fzf
+source <(fzf --zsh)
+
 # Java
+export JAVA_HOME=$(/usr/libexec/java_home -v 21)
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
+# Old Theme
+# eval "$(oh-my-posh init zsh --config $HOME/.poshthemes/custom_jblab_edit.json)"
