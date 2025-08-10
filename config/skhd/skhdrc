@@ -53,7 +53,7 @@ ctrl + alt - right : yabai -m window --toggle float --grid 1:2:1:0:1:1
 # Move window to space and follow
 ctrl + alt + cmd + shift - 1 : yabai -m window --space 1; yabai -m space --focus 1;
 ctrl + alt + cmd + shift - 2 : yabai -m window --space 2; yabai -m space --focus 2
-ctrl + alt + cmd + shift - 3 : yabai -m window --space 2; yabai -m space --focus 3
+ctrl + alt + cmd + shift - 3 : yabai -m window --space 3; yabai -m space --focus 3
 
 
 # Focus spaces

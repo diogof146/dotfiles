@@ -36,11 +36,10 @@ yabai -m config --space 1 layout bsp
 yabai -m config --space 2 layout bsp
 yabai -m config --space 3 layout bsp
 
-# Kitty always goes to space 2
+# Apps
 yabai -m rule --add app="kitty" space=2 manage=on
-
-# Apps that should ALWAYS float (regardless of space layout)
-yabai -m rule --add app="Spotify" manage=off
+yabai -m rule --add app="Spotify" space=3 manage=on
+yabai -m rule --add app="Discord" space=3 manage=on
 yabai -m rule --add app="Calculator" manage=off
 yabai -m rule --add app="^System Preferences$" manage=off
 yabai -m rule --add app="^System Settings$" manage=off
