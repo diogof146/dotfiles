@@ -1,0 +1,101 @@
+% web, performance, testing, speed, optimization, server
+
+# Test website loading time with curl
+curl -w "@-" -o /dev/null -s "<url>" <<< "
+     time_namelookup:  %{time_namelookup}
+        time_connect:  %{time_connect}
+     time_appconnect:  %{time_appconnect}
+    time_pretransfer:  %{time_pretransfer}
+       time_redirect:  %{time_redirect}
+  time_starttransfer:  %{time_starttransfer}
+                     -------
+          time_total:  %{time_total}
+"
+
+# Start simple HTTP server (Python)
+python3 -m http.server <port>
+
+# Start HTTP server with specific directory
+python3 -m http.server <port> --directory <directory>
+
+# Start Node.js server
+npx serve <directory> -p <port>
+
+# Test website response code
+curl -I <url>
+
+# Download website and save HTML
+curl -o <filename> <url>
+
+# Test website with specific User-Agent
+curl -H "User-Agent: <user_agent>" <url>
+
+# Check website headers only
+curl -I -H "Accept-Encoding: gzip" <url>
+
+# Test website from different IP (if multiple available)
+curl --interface <interface> <url>
+
+# Measure DNS lookup time
+dig <domain>
+
+# Test website speed multiple times
+for i in {1..<count>}; do echo "Test $i:"; curl -w "Total time: %{time_total}s\n" -o /dev/null -s <url>; done
+
+# Check if port is open
+nc -zv <host> <port>
+
+# Monitor network traffic
+netstat -i <interval>
+
+# Check SSL certificate info
+openssl s_client -connect <domain>:443 -servername <domain>
+
+# Test website compression
+curl -H "Accept-Encoding: gzip" -I <url>
+
+# Get website size
+curl -sI <url> | grep -i content-length
+
+# Test website with timeout
+curl --max-time <timeout> <url>
+
+# Follow redirects and show final URL
+curl -Ls -o /dev/null -w "%{url_effective}" <url>
+
+# Ping website
+ping -c <count> <host>
+
+# Traceroute to website
+traceroute <host>
+
+# Check website from specific location (using online service)
+curl "https://www.webpagetest.org/runtest.php?url=<url>&location=<location>&runs=1&f=json"
+
+# Optimize images in directory (requires imageoptim-cli)
+imageoptim <directory>
+
+# Find large files in web directory
+find <web_directory> -type f -size +<size> -exec ls -lh {} \;
+
+# Check gzip compression ratio
+gzip -c <file> | wc -c
+
+# Test HTTP/2 support
+curl -I --http2 <url>
+
+$ url: echo
+$ port: echo "3000" "8000" "8080" "5000" "4000"
+$ directory: find . -type d -maxdepth 2
+$ filename: echo "page.html" "test.html"
+$ user_agent: echo "Mozilla/5.0 (compatible; TestBot/1.0)" "curl/7.68.0"
+$ interface: echo "en0" "en1"
+$ domain: echo
+$ count: echo "3" "5" "10"
+$ host: echo
+$ interval: echo "1" "2" "5"
+$ timeout: echo "5" "10" "30"
+$ location: echo "Dulles:Chrome" "London:Firefox" "Tokyo:Chrome"
+$ web_directory: echo "." "dist" "build" "public"
+$ size: echo "+1M" "+5M" "+10M"
+$ file: find . -maxdepth 1 -name "*.html" -o -name "*.css" -o -name "*.js" | head -10

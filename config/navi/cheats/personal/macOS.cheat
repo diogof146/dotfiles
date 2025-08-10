@@ -1,0 +1,109 @@
+% macos, homebrew, brew, system, mac
+
+# Install package with Homebrew
+brew install <package_name>
+
+# Uninstall package
+brew uninstall <package_name>
+
+# Update Homebrew and all packages
+brew update && brew upgrade
+
+# Search for package
+brew search <search_term>
+
+# List installed packages
+brew list
+
+# Show package info
+brew info <package_name>
+
+# Clean up old versions and cache
+brew cleanup
+
+# Check for issues
+brew doctor
+
+# Install from cask (GUI apps)
+brew install --cask <cask_name>
+
+# List installed casks
+brew list --cask
+
+# Show system info
+system_profiler SPSoftwareDataType
+
+# Check macOS version
+sw_vers
+
+# Show disk usage by directory
+du -sh <directory>/*
+
+# Show available disk space
+df -h
+
+# Find large files in current directory
+find . -type f -size +<size> -exec ls -lh {} \; | awk '{ print $9 ": " $5 }'
+
+# Show running processes using most CPU
+ps aux | sort -nr -k 3 | head -<count>
+
+# Show running processes using most memory
+ps aux | sort -nr -k 4 | head -<count>
+
+# Kill process by name
+killall <process_name>
+
+# Show network connections
+netstat -an | grep LISTEN
+
+# Show open files for process
+lsof -p <pid>
+
+# Show what's using a specific port
+lsof -i :<port>
+
+# Flush DNS cache
+sudo dscacheutil -flushcache && sudo killall -HUP mDNSResponder
+
+# Show hidden files in Finder
+defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder
+
+# Hide hidden files in Finder
+defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder
+
+# Create symbolic link
+ln -s <source_path> <link_path>
+
+# Show file permissions in detail
+ls -la <file_or_directory>
+
+# Change file permissions
+chmod <permissions> <file_or_directory>
+
+# Show system uptime
+uptime
+
+# Show system temperature (requires additional tools)
+sudo powermetrics -n 1 -s smc | grep -i temp
+
+# Archive directory
+tar -czf <archive_name>.tar.gz <directory>
+
+# Extract archive
+tar -xzf <archive_name>
+
+$ package_name: echo
+$ search_term: echo
+$ cask_name: echo "visual-studio-code" "google-chrome" "firefox" "spotify" "discord"
+$ directory: find . -type d -maxdepth 2
+$ size: echo "+100M" "+50M" "+10M" "+1M"
+$ count: echo "5" "10" "15" "20"
+$ process_name: echo
+$ pid: echo
+$ port: echo "3000" "8000" "8080" "5000" "22" "80" "443"
+$ source_path: echo
+$ link_path: echo
+$ file_or_directory: echo
+$ permissions: echo "755" "644" "600" "777"
+$ archive_name: echo

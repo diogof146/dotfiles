@@ -1,0 +1,63 @@
+% ffmpeg, video, audio, compression, convert
+
+# Compress single video with CRF (18-23=high, 28-32=web, 32+=low)
+ffmpeg -i <input_file> -crf <crf_value> -c:v libx264 <output_file>
+
+# Compress with preset (ultrafast to veryslow)
+ffmpeg -i <input_file> -crf <crf_value> -preset <preset> -c:v libx264 <output_file>
+
+# Batch compress all MP4s (replace originals)
+for file in *.mp4; do ffmpeg -i "$file" -crf <crf_value> -c:v libx264 -y "temp_$file" && mv "temp_$file" "$file"; done
+
+# Batch compress (keep originals, add suffix)
+for file in *.mp4; do ffmpeg -i "$file" -crf <crf_value> -c:v libx264 "${file%.mp4}_compressed.mp4"; done
+
+# Resize video (maintain aspect ratio)
+ffmpeg -i <input_file> -vf scale=<width>:-1 -crf <crf_value> <output_file>
+
+# Convert to different format
+ffmpeg -i <input_file> <output_file>
+
+# Extract audio only
+ffmpeg -i <input_file> -vn -acodec copy <audio_output>
+
+# Remove audio from video
+ffmpeg -i <input_file> -an -c:v copy <video_output>
+
+# Cut video (start time to end time)
+ffmpeg -i <input_file> -ss <start_time> -to <end_time> -c copy <output_file>
+
+# Create GIF from video
+ffmpeg -i <input_file> -vf "fps=<fps>,scale=<gif_width>:-1" <output_gif>
+
+# Get detailed video info
+ffmpeg -i <input_file> 2>&1 | grep -E "(Duration|Stream|Video|Audio)"
+
+# Rotate video (90 degrees clockwise)
+ffmpeg -i <input_file> -vf "transpose=1" <output_file>
+
+# Combine videos (create list.txt with: file 'video1.mp4' etc)
+ffmpeg -f concat -safe 0 -i list.txt -c copy <output_file>
+
+# Convert image sequence to video
+ffmpeg -framerate <fps> -i <image_pattern> -c:v libx264 -crf <crf_value> <output_file>
+
+# Add watermark to video
+ffmpeg -i <input_file> -i <watermark_image> -filter_complex "overlay=<x_pos>:<y_pos>" <output_file>
+
+$ input_file: find . -maxdepth 1 -name "*.mp4" -o -name "*.mov" -o -name "*.avi" -o -name "*.mkv" | head -20
+$ output_file: echo
+$ audio_output: echo "audio.mp3" "audio.wav" "audio.aac"
+$ video_output: echo "video_no_audio.mp4"
+$ output_gif: echo "output.gif"
+$ crf_value: echo "23" "26" "28" "30" "32"
+$ preset: echo "ultrafast" "superfast" "veryfast" "faster" "fast" "medium" "slow" "slower" "veryslow"
+$ width: echo "1920" "1280" "854" "640" "480"
+$ gif_width: echo "480" "320" "640"
+$ start_time: echo "00:00:30" "00:01:00" "00:02:00"
+$ end_time: echo "00:01:00" "00:02:00" "00:05:00"
+$ fps: echo "10" "15" "24" "30" "60"
+$ image_pattern: echo "img_%04d.jpg" "frame_%03d.png"
+$ x_pos: echo "10" "W-w-10" "(W-w)/2"
+$ y_pos: echo "10" "H-h-10" "(H-h)/2"
+$ watermark_image: find . -maxdepth 1 -name "*.png" -o -name "*.jpg" | head -10
