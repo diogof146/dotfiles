@@ -9,6 +9,8 @@ alias vim="nvim"
 alias vi="nvim"
 alias neovim='fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {+})"'
 alias n="clear && neofetch"
+alias python="python3"
+alias pip="pip3"
 
 # Zsh plugins
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
