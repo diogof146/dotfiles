@@ -1,0 +1,109 @@
+# AeroSpace Configuration
+# Tiling window manager for macOS without SIP requirements
+# Uses virtual workspaces instead of native macOS spaces
+
+start-at-login = true
+
+# Tree normalization
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+# Default layout for new workspaces
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'horizontal'
+
+# Keyboard layout configuration
+key-mapping.preset = 'qwerty'
+
+# Commands to run after AeroSpace starts
+after-startup-command = ['balance-sizes']
+
+# Window gaps
+[gaps]
+inner.horizontal = 7
+inner.vertical = 7
+outer.left = 0
+outer.bottom = 0
+outer.top = 0
+outer.right = 0
+
+# Main keybinding mode
+[mode.main.binding]
+
+f1 = 'focus left'
+ctrl-alt-cmd-shift-h = 'focus left'
+ctrl-alt-cmd-shift-j = 'focus down'  
+ctrl-alt-cmd-shift-k = 'focus up'
+ctrl-alt-cmd-shift-l = 'focus right'
+
+shift-alt-h = 'focus-monitor left'
+shift-alt-l = 'focus-monitor right'
+
+ctrl-alt-cmd-shift-g = 'layout floating tiling'
+
+alt-r = 'layout tiles horizontal vertical'
+
+ctrl-alt-enter = 'fullscreen'
+ctrl-alt-e = 'balance-sizes'
+ctrl-alt-cmd-shift-e = 'balance-sizes'
+ctrl-alt-cmd-shift-enter = 'fullscreen'
+
+ctrl-alt-j = 'move down'
+ctrl-alt-k = 'move up'
+ctrl-alt-h = 'move left'
+ctrl-alt-l = 'move right'
+
+ctrl-alt-shift-j = 'move down'
+ctrl-alt-shift-k = 'move up'
+ctrl-alt-shift-h = 'move left'  
+ctrl-alt-shift-l = 'move right'
+
+shift-ctrl-h = 'move-node-to-monitor left --focus-follows-window'
+shift-ctrl-l = 'move-node-to-monitor right --focus-follows-window'
+
+ctrl-alt-cmd-shift-1 = 'move-node-to-workspace 1 --focus-follows-window'
+ctrl-alt-cmd-shift-2 = 'move-node-to-workspace 2 --focus-follows-window'
+ctrl-alt-cmd-shift-3 = 'move-node-to-workspace 3 --focus-follows-window'
+ctrl-alt-cmd-shift-4 = 'move-node-to-workspace 4 --focus-follows-window'
+ctrl-alt-cmd-shift-5 = 'move-node-to-workspace 5 --focus-follows-window'
+ctrl-alt-cmd-shift-6 = 'move-node-to-workspace 6 --focus-follows-window'
+ctrl-alt-cmd-shift-7 = 'move-node-to-workspace 7 --focus-follows-window'
+ctrl-alt-cmd-shift-8 = 'move-node-to-workspace 8 --focus-follows-window'
+ctrl-alt-cmd-shift-9 = 'move-node-to-workspace 9 --focus-follows-window'
+ctrl-alt-cmd-shift-0 = 'move-node-to-workspace 10 --focus-follows-window'
+
+ctrl-alt-cmd-shift-m = 'workspace 1'
+ctrl-alt-cmd-shift-t = 'workspace 2'  
+ctrl-alt-cmd-shift-y = 'workspace 3'
+ctrl-alt-cmd-shift-u = 'workspace 4'
+ctrl-alt-cmd-shift-i = 'workspace 5'
+ctrl-alt-cmd-shift-o = 'workspace 6'
+ctrl-alt-cmd-shift-p = 'workspace 7'
+
+# Resize windows
+ctrl-alt-cmd-shift-equal = 'resize smart +50'
+ctrl-alt-cmd-shift-minus = 'resize smart -50'
+
+ctrl-alt-cmd-shift-r = 'reload-config'
+
+# Terminal
+[[on-window-detected]]
+if.app-id = 'net.kovidgoyal.kitty'
+run = 'move-node-to-workspace 2'
+
+# Spotify
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = 'move-node-to-workspace 3'
+
+# Discord
+[[on-window-detected]]
+if.app-id = 'com.hnc.Discord'
+run = 'move-node-to-workspace 3'
+
+# Discord screen share window
+[[on-window-detected]]
+if.app-id = 'com.hnc.Discord'
+if.window-title-regex-substring = 'Discord.*Screen Share'
+run = 'move-node-to-workspace 4'
+
