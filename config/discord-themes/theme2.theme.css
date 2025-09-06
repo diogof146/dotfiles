@@ -1,0 +1,183 @@
+/**
+ * @name Theme2
+ * @version 2.0.0
+ * @description Display your picture of choice with adjustable blur and brightness. Dark theme is required.
+ * @source https://github.com/DiscordStyles/FrostedGlass
+*/
+@import url("https://discordstyles.github.io/FrostedGlass/dist/FrostedGlass.css");
+/* BlackBox tags */
+@import url('https://monstrousdev.github.io/themes/addons/user-tags.css');
+/* Old Windows titlebar - remove this @import if you wish to use default titlebar */
+@import url("https://gibbu.github.io/BetterDiscord-Themes/addons/windows-titlebar.css");
+
+:root {
+  /* Background image variables */
+  --background-image: url('https://i.imgur.com/9zisd5e.jpeg');
+  /* Main background image | URL MUST BE A DIRECT LINK (ending in .jpg, .jpeg, .png, .gif) */
+  --background-image-blur: 5px;
+  /* Blur intensity of --background-image | Must end in px | DEFAULT: 5px */
+  --background-image-size: cover;
+  /* Size of the background image | DEFAUT: cover | OPTIONS: cover, contain */
+  --background-image-position: center;
+  /* Position of background image | DEAFULT: center | OPTIONS: top, right, bottom, left, center */
+  /* Popout & Modal variables */
+  --popout-modal-image: var(--background-image);
+  /* Background image for popouts and modals | URL MUST BE A DIRECT LINK (ending in .jpg, .jpeg, .png, .gif) */
+  --popout-modal-blur: 5px;
+  /* Blur intensity of --popout-modal-image | Must end in px | DEFAULT: 5px */
+  --popout-modal-size: cover;
+  /* Size of the popout/modal image | DEFAUT: cover | OPTIONS: cover, contain */
+  --popout-modal-position: center;
+  /* Position of popout/modal image | DEAFULT: center | OPTIONS: top, right, bottom, left, center */
+  /* Home image variables */
+  --home-button-image: url('https://gibbu.github.io/BetterDiscord-Themes/FrostedGlass/assets/discord.svg');
+  /* Home button image | URL MUST BE A DIRECT LINK (ending in .jpg, .jpeg, .png, .gif) */
+  --home-button-size: cover;
+  /* Size of the home button image | DEFAUT: cover */
+  --home-button-position: center;
+  /* Position of home button image | DEAFULT: center */
+  /* Brightness variables */
+  --serverlist-brightness: 0.8;
+  /* Brightness for serverlist | 0 - 1 (decimals allowed) | DEFAULT: 0.8 */
+  --left-brightness: 0.8;
+  /* Channels and DM list brightness | 0 - 1 (decimals allowed) | DEFAULT: 0.8 */
+  --middle-brightness: 0.6;
+  /* Chat brightness | 0 - 1 (decimals allowed) | DEFAULT: 0.6 */
+  --right-brightness: 0;
+  /* Members and Now Playing brightness | 0 - 1 (decimals allowed) | DEFAULT: 0 */
+  --popout-modal-brightness: 0.75;
+  /* Brightness for popouts and modals | 0 - 1 (decimals allowed) | DEFAULT: 0.75 */
+  /* Gradient variables */
+  --gradient-primary: 0, 188, 244;
+  /* Changed from purple (103,58,183) to bright cyan */
+  --gradient-secondary: 34, 139, 168;
+  /* Changed from blue (63,81,181) to teal-cyan */
+  --gradient-direction: 320deg;
+  /* DEFAULT: 320deg */
+  /* Tint variables */
+  --tint-colour: 0, 229, 255;
+  /* Changed from pink (255,51,159) to bright cyan */
+  --tint-brightness: 0;
+  /* Brightness of --tint-colour | 0 - 1 (decimals allowed) | DEFAULT: 0 */
+  /* Other variables */
+  --window-padding: 20px;
+  /* Spacing around the Discord window | DEFAULT: 20px */
+  --window-roundness: 10px;
+  /* Roundness of Discord | DEFAULT: 10px */
+  --scrollbar-colour: rgba(255, 255, 255, 0.05);
+  /* DEFAULT: rgba(255,255,255,0.05) */
+  --link-colour: #00e5ff;
+  /* Changed from blue (#00b0f4) to bright cyan */
+  /*
+    Visit https://fonts.google.com and select one to your liking.
+    Now just follow this tutorial: https://imgur.com/a/CNbw7xC
+  */
+  --font: 'Whitney';
+
+  /* Override Discord's CSS variables for brand colors */
+  --brand-experiment: #00ced1 !important;
+  --brand-experiment-100: #00ced1 !important;
+  --brand-experiment-130: #00ced1 !important;
+  --brand-experiment-160: #00ced1 !important;
+  --brand-experiment-200: #00ced1 !important;
+  --brand-experiment-230: #00ced1 !important;
+  --brand-experiment-260: #00ced1 !important;
+  --brand-experiment-300: #00ced1 !important;
+  --brand-experiment-330: #00ced1 !important;
+  --brand-experiment-360: #00ced1 !important;
+  --brand-experiment-400: #00ced1 !important;
+  --brand-experiment-430: #00ced1 !important;
+  --brand-experiment-460: #00ced1 !important;
+  --brand-experiment-500: #00ced1 !important;
+  --brand-experiment-530: #008b8b !important;
+  --brand-experiment-560: #008b8b !important;
+  --brand-experiment-600: #008b8b !important;
+  --brand-experiment-630: #008b8b !important;
+  --brand-experiment-660: #008b8b !important;
+  --brand-experiment-700: #008b8b !important;
+  --brand-experiment-730: #006666 !important;
+  --brand-experiment-760: #006666 !important;
+  --brand-experiment-800: #006666 !important;
+  --brand-experiment-830: #004444 !important;
+  --brand-experiment-860: #004444 !important;
+  --brand-experiment-900: #004444 !important;
+
+  /* Do not touch */
+  --update-notice-1: none;
+}
+
+/* Target Discord elements using broader selectors */
+
+/* Discord home button - working */
+#app-mount .guilds_c48ade [class*="tutorialContainer"] [class*="childWrapper"],
+#app-mount .guilds_c48ade [class*="listItem"]:first-child [class*="childWrapper"],
+#app-mount [class*="guilds"] [class*="tutorialContainer"] [class*="childWrapper"],
+#app-mount [class*="tutorialContainer"] [class*="childWrapper"]:first-of-type {
+  background: rgb(0, 120, 123) !important;
+}
+
+/* Add Server and Discover Server buttons - working with inverted colors */
+#app-mount .guilds_c48ade [class*=circleIconButton] {
+  background: var(--background-secondary) !important;
+  /* Server-like background */
+  color: rgb(0, 120, 123) !important;
+  /* Cyan symbols */
+}
+
+#app-mount .guilds_c48ade [class*=circleIconButton]:hover {
+  background: var(--foreground) !important;
+  color: rgb(0, 100, 103) !important;
+}
+
+/* Create DM button - try brute force approach */
+#app-mount * {
+  /* Only target elements that contain "Create DM" text */
+}
+
+#app-mount *[class*="actionButton"]:not([class*="controlButton"]):not([class*="leaveButton"]):not([class*="centerButton"]) {
+  background: rgb(0, 120, 123) !important;
+}
+
+/* Selected DM highlight - cyan background */
+#app-mount .containerDefault_c69b6d.selected_c69b6d .link__2ea32,
+#app-mount [class*="channel"].selected [class*="link"],
+#app-mount [class*="containerDefault"].selected [class*="link"],
+#app-mount .selected_c69b6d {
+  background: rgb(0, 120, 123) !important;
+}
+
+/* Message reactions - grey background like server list */
+#app-mount .message__5126c .reaction__23977,
+#app-mount [class*="reaction"]:not([class*="reactionMe"]) {
+  background: var(--background-secondary) !important;
+}
+
+/* Keep user's own reactions cyan */
+#app-mount .message__5126c .reaction__23977.reactionMe__23977 {
+  background: rgb(0, 120, 123) !important;
+}
+
+/* Group DM backgrounds and server icons with purple/blue colors */
+.wrapper-3kah-n .childWrapper-1j_1ub,
+.content-1gYQeQ,
+.layout-1qmrhw:hover,
+.interactive-1vLZ_I:hover {
+  background: linear-gradient(320deg, rgba(0, 188, 244, 0.8), rgba(34, 139, 168, 0.8)) !important;
+}
+
+/* Direct Messages section header */
+.container-32HW5s .header-3OsQeK {
+  background: linear-gradient(320deg, rgba(0, 188, 244, 0.3), rgba(34, 139, 168, 0.3)) !important;
+}
+
+/* Override any remaining purple/blue accent colors */
+.colorBrand-I6CyqQ,
+.colorBrandNew-2-gGsR {
+  color: rgb(0, 229, 255) !important;
+}
+
+/* Status indicators and badges */
+.numberBadge-37OJ3S,
+.base-2v-uc0.size14-3fJ-ot {
+  background-color: rgb(0, 188, 244) !important;
+}
