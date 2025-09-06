@@ -36,6 +36,14 @@ ctrl-alt-cmd-shift-j = 'focus down'
 ctrl-alt-cmd-shift-k = 'focus up'
 ctrl-alt-cmd-shift-l = 'focus right'
 
+shift-cmd-h = 'join-with left'
+shift-cmd-j = 'join-with down'
+shift-cmd-k = 'join-with up'
+shift-cmd-l = 'join-with right'
+
+shift-ctrl-h = 'move-node-to-monitor left --focus-follows-window'
+shift-ctrl-l = 'move-node-to-monitor right --focus-follows-window'
+
 shift-alt-h = 'focus-monitor left'
 shift-alt-l = 'focus-monitor right'
 
@@ -53,14 +61,6 @@ ctrl-alt-k = 'move up'
 ctrl-alt-h = 'move left'
 ctrl-alt-l = 'move right'
 
-ctrl-alt-shift-j = 'move down'
-ctrl-alt-shift-k = 'move up'
-ctrl-alt-shift-h = 'move left'  
-ctrl-alt-shift-l = 'move right'
-
-shift-ctrl-h = 'move-node-to-monitor left --focus-follows-window'
-shift-ctrl-l = 'move-node-to-monitor right --focus-follows-window'
-
 ctrl-alt-cmd-shift-1 = 'move-node-to-workspace 1 --focus-follows-window'
 ctrl-alt-cmd-shift-2 = 'move-node-to-workspace 2 --focus-follows-window'
 ctrl-alt-cmd-shift-3 = 'move-node-to-workspace 3 --focus-follows-window'
@@ -68,9 +68,6 @@ ctrl-alt-cmd-shift-4 = 'move-node-to-workspace 4 --focus-follows-window'
 ctrl-alt-cmd-shift-5 = 'move-node-to-workspace 5 --focus-follows-window'
 ctrl-alt-cmd-shift-6 = 'move-node-to-workspace 6 --focus-follows-window'
 ctrl-alt-cmd-shift-7 = 'move-node-to-workspace 7 --focus-follows-window'
-ctrl-alt-cmd-shift-8 = 'move-node-to-workspace 8 --focus-follows-window'
-ctrl-alt-cmd-shift-9 = 'move-node-to-workspace 9 --focus-follows-window'
-ctrl-alt-cmd-shift-0 = 'move-node-to-workspace 10 --focus-follows-window'
 
 ctrl-alt-cmd-shift-m = 'workspace 1'
 ctrl-alt-cmd-shift-t = 'workspace 2'  
