@@ -1,0 +1,126 @@
+% mvn, spring boot, node.js, react, swift, python, c++, html, lua, docker, ruby, rails, go, angular, vue
+
+# Maven Project (Basic)
+echo "Enter Maven group ID (e.g., com.example):"
+read group_id
+echo "Enter project name (e.g., my_project):"
+read project_name
+echo "Enter version (e.g., 1.0.0):"
+read version
+mvn archetype:generate -DgroupId=$group_id -DartifactId=$project_name -Dversion=$version -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+echo "Project created! Navigate to $project_name and run 'mvn clean install'."
+
+# Spring Boot Project (Maven-based)
+echo "Enter Spring Boot project name (e.g., my_spring_project):"
+read project_name
+echo "Enter Spring Boot group ID (e.g., com.example):"
+read group_id
+echo "Enter Spring Boot version (e.g., 1.0.0):"
+read version
+curl https://start.spring.io/starter.zip -d dependencies=web,jpa,h2 -d name=$project_name -d artifactId=$project_name -d groupId=$group_id -d version=$version -o $project_name.zip && unzip $project_name.zip -d $project_name && rm $project_name.zip
+echo "Spring Boot project created! Navigate to $project_name and run 'mvn clean install'."
+
+# Node.js Project (npm init)
+echo "Enter Node.js project name (e.g., my_node_project):"
+read project_name
+mkdir $project_name && cd $project_name
+npm init -y
+echo "Node.js project created! Navigate to $project_name and run 'npm install' to install dependencies."
+
+# Next.js Project (Using npx)
+echo "Enter Next.js project name (e.g., my_next_app):"
+read project_name
+npx create-next-app@latest $project_name
+echo "Next.js project created! Navigate to $project_name and run 'npm run dev' to start the development server."
+
+# React Project (Using npx create-react-app)
+echo "Enter React project name (e.g., my_react_app):"
+read project_name
+npx create-react-app $project_name
+echo "React project created! Navigate to $project_name and run 'npm start' to start the development server."
+
+# Swift Package Project
+echo "Enter Swift package name (e.g., my_swift_package):"
+read project_name
+mkdir $project_name && cd $project_name
+swift package init --type executable
+echo "Swift package project created! Navigate to $project_name and run 'swift run' to build and run the project."
+
+# Basic HTML Project (with CSS, JS, and Assets Folders)
+echo "Enter HTML project name (e.g., my_html_project):"
+read project_name
+mkdir -p $project_name/{css,js,assets} && touch $project_name/index.html && touch $project_name/css/style.css && touch $project_name/js/script.js
+echo "HTML project created with folders for CSS, JS, and assets. Navigate to $project_name and edit the files as needed."
+
+# C++ Project (Basic with CMakeLists.txt)
+echo "Enter C++ project name (e.g., my_cpp_project):"
+read project_name
+mkdir -p $project_name/src && touch $project_name/src/main.cpp && touch $project_name/CMakeLists.txt
+echo "C++ project created! Navigate to $project_name and use 'cmake' to configure the build."
+
+# C Project (with Makefile)
+echo "Enter C project name (e.g., my_c_project):"
+read project_name
+mkdir -p $project_name/src && touch $project_name/src/main.c && touch $project_name/Makefile
+echo "C project created! Navigate to $project_name and use 'make' to build the project."
+
+# Lua Project
+echo "Enter Lua project name (e.g., my_lua_project):"
+read project_name
+mkdir -p $project_name && touch $project_name/main.lua
+echo "Lua project created! Navigate to $project_name and edit the main.lua file."
+
+# Python Project (using Poetry)
+echo "Enter Python project name (e.g., my_python_project):"
+read project_name
+poetry new $project_name
+echo "Python project created using Poetry. Navigate to $project_name and run 'poetry install' to set up the virtual environment."
+
+# Dockerized Node.js Project
+echo "Enter Dockerized Node.js project name (e.g., my_docker_node_project):"
+read project_name
+mkdir -p $project_name && cd $project_name
+npm init -y
+touch Dockerfile .dockerignore
+echo "Dockerized Node.js project created! Edit the Dockerfile, then build the Docker image with 'docker build -t <image_name> .'"
+
+# Python Flask Project (with Docker)
+echo "Enter Python Flask project name (e.g., my_flask_project):"
+read project_name
+mkdir -p $project_name && cd $project_name
+python3 -m venv venv
+touch app.py requirements.txt Dockerfile .dockerignore
+echo "Flask project with Docker created! Edit 'app.py' and run 'docker build -t <image_name> .'"
+
+# Go Project (Basic)
+echo "Enter Go project name (e.g., my_go_project):"
+read project_name
+mkdir -p $project_name/cmd && touch $project_name/cmd/main.go
+cd $project_name && go mod init $project_name
+echo "Go project created! Navigate to $project_name and run 'go run cmd/main.go' to start the project."
+
+# Ruby on Rails Project
+echo "Enter Ruby on Rails project name (e.g., my_rails_project):"
+read project_name
+rails new $project_name
+echo "Ruby on Rails project created! Navigate to $project_name and run 'rails server' to start the development server."
+
+# Django Project (Python)
+echo "Enter Django project name (e.g., my_django_project):"
+read project_name
+django-admin startproject $project_name
+echo "Django project created! Navigate to $project_name and run 'python manage.py runserver' to start the development server."
+
+# Angular Project
+echo "Enter Angular project name (e.g., my_angular_project):"
+read project_name
+ng new $project_name
+echo "Angular project created! Navigate to $project_name and run 'ng serve' to start the development server."
+
+# Vue.js Project
+echo "Enter Vue.js project name (e.g., my_vue_project):"
+read project_name
+npm init vue@latest $project_name
+echo "Vue.js project created! Navigate to $project_name and run 'npm run dev' to start the development server."
+
+
