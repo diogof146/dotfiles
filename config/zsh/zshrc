@@ -1,6 +1,13 @@
 neofetch
 
-EDITOR="nvim"
+export EDITOR='nvim'
+export VISUAL='nvim'
+bindkey -v
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^E' edit-command-line
+bindkey -M vicmd 'q' backward-word
+bindkey -M vicmd 'b' vi-repeat-search
 
 # Alias
 alias dotfiles="git -C ~/dotfiles"
@@ -11,6 +18,15 @@ alias neovim='fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim
 alias n="clear && neofetch"
 alias python="python3"
 alias pip="pip3"
+alias mv="/bin/mv -i"
+alias cp="/bin/cp -i"
+alias mkdir="mkdir -p"
+alias startmysql="brew services start mysql"
+alias stopmysql="brew services stop mysql"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
 
 # Zsh plugins
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
