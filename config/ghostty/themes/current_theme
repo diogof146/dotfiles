@@ -1,0 +1,39 @@
+# Main Colors
+background = #000914
+foreground = #daf2f3
+selection-background = #31a2a6
+selection-foreground = #000000
+cursor-color = #b4ede7
+
+# The 16 ANSI Colors (0-15)
+# Black
+palette = 0=#444444
+palette = 8=#4e4e4e
+
+# Red
+palette = 1=#9d5776
+palette = 9=#cf5e91
+
+# Green (Teals in your case)
+palette = 2=#398484
+palette = 10=#64b7b7
+
+# Yellow (Muted Purples/Greys for you)
+palette = 3=#6b6b88
+palette = 11=#8d8dba
+
+# Blue
+palette = 4=#4a6684
+palette = 12=#588bc4
+
+# Magenta
+palette = 5=#6f579d
+palette = 13=#8f73c4
+
+# Cyan
+palette = 6=#148080
+palette = 14=#c3f9fa
+
+# White
+palette = 7=#9aadb2
+palette = 15=#d1d1d1

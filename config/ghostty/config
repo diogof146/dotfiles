@@ -1,0 +1,72 @@
+font-family = "FiraCode Nerd Font Mono"
+# FONTS
+font-size = 15
+font-thicken = true
+
+# THEME & COLORS
+# Ghostty has built-in themes. You can list them with `ghostty +list-themes`
+# Since you had an include, you might want to pick a standard one or 'auto'
+# theme = auto
+background-opacity = 0.6
+background-blur-radius = 3
+theme = current_theme
+
+# SHADERS
+custom-shader-animation = always
+custom-shader = ~/.config/ghostty/shaders/cursor-effects/ripple_cursor.glsl
+custom-shader = ~/.config/ghostty/shaders/cursor-effects/sonic_boom_cursor.glsl
+custom-shader = ~/.config/ghostty/shaders/cursor-effects/cursor_sweep.glsl
+
+# WINDOW
+window-decoration = false
+window-padding-x = 1
+window-padding-y = 1
+confirm-close-surface = true
+
+# SCROLLING
+scrollback-limit = 10000
+
+# TABS
+macos-titlebar-proxy-icon = hidden
+
+# SHELL
+command = /bin/zsh
+
+# OTHER
+auto-update = check
+shell-integration-features = ssh-terminfo,sudo
+bell-features =
+
+# KEYBINDINGS
+keybind = global:ctrl+plus=toggle_quick_terminal
+keybind = cmd+shift+i=inspector:toggle
+
+# SPLITS
+keybind = cmd+h=goto_split:left
+keybind = cmd+j=goto_split:bottom
+keybind = cmd+k=goto_split:top
+keybind = cmd+l=goto_split:right
+keybind = cmd+shift+h=resize_split:left,10
+keybind = cmd+shift+j=resize_split:down,10
+keybind = cmd+shift+k=resize_split:up,10
+keybind = cmd+shift+l=resize_split:right,10
+
+# ADVANCED / HEX CODES
+# Ghostty uses the "text:" prefix to send raw sequences.
+# \x1b is ESC.
+keybind = opt+h=text:\x1bh
+keybind = opt+j=text:\x1bj
+keybind = opt+k=text:\x1bk
+keybind = opt+l=text:\x1bl
+
+# The complex modifiers mapping
+keybind = ctrl+opt+cmd+shift+space=text:\x01
+keybind = cmd+opt+ctrl+shift+h=text:\x1b[1;13H
+keybind = cmd+opt+ctrl+shift+j=text:\x1b[1;13J
+keybind = cmd+opt+ctrl+shift+k=text:\x1b[1;13K
+keybind = cmd+opt+ctrl+shift+l=text:\x1b[1;13L
+
+
+
+# Cmd for nvim open using mac shortcuts
+# open -n -a Ghostty --args -e zsh -c 'export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"; nvim; cd "$(cat /tmp/last_ghostty_cwd 2>/dev/null || echo .)"; exec zsh -l'
