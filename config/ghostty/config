@@ -7,15 +7,17 @@ font-thicken = true
 # Ghostty has built-in themes. You can list them with `ghostty +list-themes`
 # Since you had an include, you might want to pick a standard one or 'auto'
 # theme = auto
-background-opacity = 0.6
+background-opacity = 0.4
 background-blur-radius = 3
 theme = current_theme
 
 # SHADERS
 custom-shader-animation = always
-custom-shader = ~/.config/ghostty/shaders/cursor-effects/ripple_cursor.glsl
-custom-shader = ~/.config/ghostty/shaders/cursor-effects/sonic_boom_cursor.glsl
-custom-shader = ~/.config/ghostty/shaders/cursor-effects/cursor_sweep.glsl
+custom-shader = shaders/cursor-effects/ripple_cursor.glsl
+custom-shader = shaders/cursor-effects/sonic_boom_cursor.glsl
+custom-shader = shaders/cursor-effects/cursor_sweep.glsl
+custom-shader = shaders/matrix-hallway.glsl
+custom-shader = shaders/animated-gradient-shader.glsl
 
 # WINDOW
 window-decoration = false
