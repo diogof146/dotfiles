@@ -7,7 +7,7 @@ font-thicken = true
 # Ghostty has built-in themes. You can list them with `ghostty +list-themes`
 # Since you had an include, you might want to pick a standard one or 'auto'
 # theme = auto
-background-opacity = 0.4
+background-opacity = 0.2
 background-blur-radius = 3
 theme = current_theme
 
@@ -24,12 +24,14 @@ window-decoration = false
 window-padding-x = 1
 window-padding-y = 1
 confirm-close-surface = true
+macos-window-shadow = false
 
 # SCROLLING
 scrollback-limit = 10000
 
 # TABS
 macos-titlebar-proxy-icon = hidden
+macos-non-native-fullscreen = false
 
 # SHELL
 command = /bin/zsh

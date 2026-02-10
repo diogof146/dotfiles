@@ -8,7 +8,7 @@
 //
 #define SPEED_MULTIPLIER 1.
 #define GREEN_ALPHA 0.33
-#define BLACK_BLEND_THRESHOLD .4
+#define BLACK_BLEND_THRESHOLD .1
 #define COLOR_CYCLE_SPEED 0.7  // Speed of color cycling (lower = slower)
 #define R fract(1e2 * sin(p.x * 8. + p.y))
 
@@ -51,6 +51,8 @@ void mainImage(out vec4 fragColor, vec2 fragCoord) {
     vec2 uv = fragCoord.xy / iResolution.xy;
     vec4 terminalColor = texture(iChannel0, uv);
     float alpha = step(length(terminalColor.rgb), BLACK_BLEND_THRESHOLD);
-    vec3 blendedColor = mix(terminalColor.rgb * 1.2, col, alpha);
+    // vec3 blendedColor = mix(terminalColor.rgb * 1.2, col, alpha);
+    vec3 boostedTerminal = terminalColor.rgb * mix(1.0, 1.2, alpha);
+    vec3 blendedColor = mix(boostedTerminal, col, alpha);
     fragColor = vec4(blendedColor, terminalColor.a);
 }
