@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# SETUP (run once):
+#
+# 1. Add homebrew to system PATH so GUI apps (Unity) can find binaries:
+#    sudo sh -c 'echo /opt/homebrew/bin >> /etc/paths'
+#
+# 2. Create ghostty wrapper so Unity can find it:
+#    sudo bash -c 'echo "#!/bin/bash\nexec /Applications/Ghostty.app/Contents/MacOS/ghostty \"\$@\"" > /usr/local/bin/ghostty && chmod +x /usr/local/bin/ghostty'
+#
+# 3. Symlink hyprspace so it's callable from non-shell contexts:
+#    sudo ln -sf /opt/homebrew/bin/hyprspace /usr/local/bin/hyprspace
+#
+# 4. Symlink this file from dotfiles:
+#    sudo ln -sf ~/dotfiles/config/nvimunity/nvimunity /Applications/NvimUnity.app/Contents/MacOS/nvimunity
+
+CONFIG_DIR="$HOME/.config/nvim-unity"
+CONFIG_FILE="$CONFIG_DIR/config.json"
+NVIM_PATH="/opt/homebrew/bin/nvim"
+SOCKET="$HOME/.cache/nvimunity.sock"
+
+mkdir -p "$HOME/.cache"
+mkdir -p "$CONFIG_DIR"
+
+if [ ! -f "$CONFIG_FILE" ]; then
+  echo '{"last_project": ""}' > "$CONFIG_FILE"
+fi
+
+LAST_PROJECT=$(jq -r '.last_project' "$CONFIG_FILE")
+
+FILE="$1"
+LINE="${2:-1}"
+
+if ! [[ "$LINE" =~ ^[1-9][0-9]*$ ]]; then
+  LINE="1"
+fi
+
+if "$NVIM_PATH" --server "$SOCKET" --remote-send "" 2>/dev/null; then
+  "$NVIM_PATH" --server "$SOCKET" --remote-send "<cmd>e +${LINE} ${FILE}<CR>"
+  /usr/local/bin/hyprspace workspace 2
+else
+  if [ -n "$LAST_PROJECT" ]; then
+    CMD="$NVIM_PATH --listen \"$SOCKET\" \"+$LINE\" \"+cd \\\"$LAST_PROJECT\\\"\" \"$FILE\""
+  else
+    CMD="$NVIM_PATH --listen \"$SOCKET\" \"+$LINE\" \"$FILE\""
+  fi
+  eval "$CMD"
+fi
