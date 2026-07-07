@@ -7,8 +7,8 @@
 // https://www.shadertoy.com/view/ldjBW1
 //
 
-#define SPEED_MULTIPLIER 1.
-#define GREEN_ALPHA .1
+#define SPEED_MULTIPLIER 1
+#define GREEN_ALPHA .3
 
 #define BLACK_BLEND_THRESHOLD .1
 
@@ -35,7 +35,7 @@ void mainImage(out vec4 fragColor, vec2 fragCoord) {
 
     float alpha = step(length(terminalColor.rgb), BLACK_BLEND_THRESHOLD);
     // vec3 blendedColor = mix(terminalColor.rgb * 1.2, col, alpha);
-    vec3 boostedTerminal = terminalColor.rgb * mix(1.0, 1.20, alpha);
+    vec3 boostedTerminal = terminalColor.rgb * mix(1.0, 1.2, alpha);
     vec3 blendedColor = mix(boostedTerminal, col, alpha);
 
 

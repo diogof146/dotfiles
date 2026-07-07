@@ -1,5 +1,6 @@
 # Main Colors
-background = #042629
+# 042629
+background = #031D1F
 foreground = #daf2f3
 selection-background = #31a2a6
 selection-foreground = #000000

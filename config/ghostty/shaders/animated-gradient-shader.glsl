@@ -6,10 +6,10 @@
 //
 // https://www.shadertoy.com/view/ldjBW1
 //
-#define SPEED_MULTIPLIER 1.
+#define SPEED_MULTIPLIER 1
 #define GREEN_ALPHA 0.33
 #define BLACK_BLEND_THRESHOLD .1
-#define COLOR_CYCLE_SPEED 0.7  // Speed of color cycling (lower = slower)
+#define COLOR_CYCLE_SPEED 0.2  // Speed of color cycling (lower = slower)
 #define R fract(1e2 * sin(p.x * 8. + p.y))
 
 vec3 getColorForTime(float time) {
