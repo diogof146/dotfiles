@@ -43,7 +43,7 @@ shell-integration-features = ssh-terminfo,sudo
 bell-features =
 
 # KEYBINDINGS
-keybind = global:ctrl+plus=toggle_quick_terminal
+keybind = global:opt+plus=toggle_quick_terminal
 keybind = cmd+shift+i=inspector:toggle
 
 # SPLITS
@@ -70,7 +70,6 @@ keybind = cmd+opt+ctrl+shift+h=text:\x1b[1;13H
 keybind = cmd+opt+ctrl+shift+j=text:\x1b[1;13J
 keybind = cmd+opt+ctrl+shift+k=text:\x1b[1;13K
 keybind = cmd+opt+ctrl+shift+l=text:\x1b[1;13L
-
 
 
 # Cmd for nvim open using mac shortcuts
