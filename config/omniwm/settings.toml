@@ -1,8 +1,9 @@
 monitorBarOverrides = []
 monitorDwindleOverrides = []
+monitorGapOverrides = []
 monitorNiriOverrides = []
 monitorOrientationOverrides = []
-monitorRoutingOverrides = []
+schemaVersion = 3
 
 [appearance]
 mode = "dark"
@@ -26,7 +27,7 @@ maxTotalBytes = 67108864
 [dwindle]
 defaultSplitRatio = 1.0
 moveToRootStable = true
-singleWindowAspectRatio = "fill"
+singleWindowFit = "fill"
 smartSplit = false
 splitWidthMultiplier = 1.0
 useGlobalGaps = true
@@ -38,8 +39,10 @@ followsWindowToMonitor = true
 lockModifier = "off"
 moveCrossesMonitorAtEdge = true
 moveMouseToFocusedWindow = true
+raiseOnMouseFocus = false
 
 [gaps]
+fullscreenUsesOuterGaps = false
 size = 12.0
 
 [gaps.outer]
@@ -52,36 +55,78 @@ top = 10.0
 animationsEnabled = true
 defaultLayoutType = "dwindle"
 hotkeysEnabled = true
+hyperKeyModifiers = "Control+Option+Shift+Command"
 ipcEnabled = true
 preventSleepEnabled = false
-spacesTrackingEnabled = true
 systemHyperTrigger = "None"
 updateChecksEnabled = true
 
 [gestures]
 fingerCount = 3
 invertDirection = true
+mouseMoveModifierKey = "option"
 mouseResizeModifierKey = "option"
 scrollEnabled = true
 scrollModifierKey = "optionShift"
 scrollSensitivity = 2.6
 trackpadScrollStyle = "snap"
+workspaceSwipeAxis = "vertical"
+workspaceSwipeEnabled = false
+workspaceSwipeFingerCount = 3
+
+[hiddenBar]
+enabled = true
+hiddenBundleIDs = []
+rehideIntervalSeconds = 5.0
 
 [mouseWarp]
+constrainToArrangement = false
 enabled = true
 margin = 1
 
 [niri]
 alwaysCenterSingleColumn = false
 centerFocusedColumn = "never"
-columnWidthPresets = [0.3333333333333333, 0.5, 0.6666666666666666]
+containerPrimarySpanPresets = [0.3333333333333333, 0.5, 0.6666666666666666]
+defaultContainerPrimarySpan = 0.5
 infiniteLoop = true
-maxVisibleColumns = 2
-singleWindowAspectRatio = "fill"
+singleWindowFit = "fill"
+visibleContainerCount = 2
+
+[overview]
+zoom = 1.0
+
+[overview.backdrop]
+alpha = 1.0
+blue = 0.08
+green = 0.05
+red = 0.05
+
+[overview.windowBorders]
+
+[overview.windowBorders.hovered]
+alpha = 1.0
+blue = 1.0
+green = 0.6
+red = 0.4
+
+[overview.windowBorders.normal]
+alpha = 0.5
+blue = 0.35
+green = 0.3
+red = 0.3
+
+[overview.windowBorders.selected]
+alpha = 1.0
+blue = 0.4
+green = 0.8
+red = 0.3
 
 [quakeTerminal]
 animationDuration = 0.2
 autoHide = true
+backgroundBlurRadius = 0
+backgroundEffect = "standardBlur"
 enabled = true
 heightPercent = 50.0
 monitorMode = "focusedWindow"
@@ -90,7 +135,12 @@ position = "center"
 widthPercent = 75.0
 
 [routing]
+arrangements = []
 mode = "macOS"
+
+[scratchpads]
+
+[scratchpads.labels]
 
 [statusBar]
 showAppNames = false
@@ -101,9 +151,10 @@ useWorkspaceId = false
 backgroundOpacity = 0.0
 deduplicateAppIcons = false
 enabled = true
+excludedBundleIDs = []
 height = 20.0
 hideEmptyWorkspaces = true
-labelFontSize = 12.0
+hideInNativeFullscreen = false
 notchActiveZoneWidth = 180.0
 notchMode = "splitActiveLeft"
 position = "overlappingMenuBar"
@@ -117,17 +168,7 @@ windowLevel = "normal"
 xOffset = 0.0
 yOffset = 8.0
 
-[workspaceBar.accentColor]
-alpha = 1.0
-blue = 0.5761744379997253
-green = 0.4886358976364136
-red = 0.0
-
-[workspaceBar.textColor]
-alpha = 1.0
-blue = 0.9926139712333679
-green = 0.9910442233085632
-red = 0.7906463742256165
+[workspaceBar.iconOverrides]
 
 [[appRules]]
 bundleId = "com.openai.codex"
@@ -195,6 +236,8 @@ assignToWorkspace = "2"
 bundleId = "com.mitchellh.ghostty"
 id = "7876C9EF-437E-4D4F-9C27-B1B02F4AABCE"
 layout = "tile"
+minHeight = 48.0
+minWidth = 90.0
 
 [[appRules]]
 bundleId = "com.microsoft.Outlook"
@@ -207,6 +250,93 @@ bundleId = "com.apple.MobileSMS"
 id = "552FB77D-BF0E-4737-90A6-B5BC6986C579"
 minHeight = 320.0
 minWidth = 660.0
+
+[[appRules]]
+appNameSubstring = "ffxiv_dx11.exe"
+assignToWorkspace = "7"
+bundleId = ""
+id = "6B54023D-2FE3-438B-9393-B6784827020C"
+layout = "tile"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "toggleScratchpad.1"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "assignFocusedWindowToScratchpad.1"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "toggleScratchpad.2"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "assignFocusedWindowToScratchpad.2"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "toggleScratchpad.3"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "assignFocusedWindowToScratchpad.3"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "toggleScratchpad.4"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "assignFocusedWindowToScratchpad.4"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "toggleScratchpad.5"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "assignFocusedWindowToScratchpad.5"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "toggleScratchpad.6"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "assignFocusedWindowToScratchpad.6"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "toggleScratchpad.7"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "assignFocusedWindowToScratchpad.7"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "toggleScratchpad.8"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "assignFocusedWindowToScratchpad.8"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "toggleScratchpad.9"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "assignFocusedWindowToScratchpad.9"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "toggleScratchpad.10"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "assignFocusedWindowToScratchpad.10"
 
 [[hotkeys]]
 binding = "Hyper+M"
@@ -279,6 +409,78 @@ id = "switchWorkspace.8"
 [[hotkeys]]
 binding = "Hyper+9"
 id = "moveToWorkspace.8"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "switchWorkspaceSlot.1"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveToWorkspaceSlot.1"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "switchWorkspaceSlot.2"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveToWorkspaceSlot.2"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "switchWorkspaceSlot.3"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveToWorkspaceSlot.3"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "switchWorkspaceSlot.4"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveToWorkspaceSlot.4"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "switchWorkspaceSlot.5"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveToWorkspaceSlot.5"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "switchWorkspaceSlot.6"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveToWorkspaceSlot.6"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "switchWorkspaceSlot.7"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveToWorkspaceSlot.7"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "switchWorkspaceSlot.8"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveToWorkspaceSlot.8"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "switchWorkspaceSlot.9"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveToWorkspaceSlot.9"
 
 [[hotkeys]]
 binding = "Hyper+Quote"
@@ -438,18 +640,10 @@ id = "moveWindowUpOrToWorkspaceUp"
 
 [[hotkeys]]
 binding = "Control+Shift+H"
-id = "consumeOrExpelWindowLeft"
-
-[[hotkeys]]
-binding = "Control+Shift+L"
-id = "consumeOrExpelWindowRight"
-
-[[hotkeys]]
-binding = "Unassigned"
 id = "consumeWindowIntoColumn"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Control+Shift+L"
 id = "expelWindowFromColumn"
 
 [[hotkeys]]
@@ -465,7 +659,39 @@ binding = "Control+Command+Grave"
 id = "focusMonitorLast"
 
 [[hotkeys]]
-binding = "Option+Return"
+binding = "Unassigned"
+id = "moveWorkspaceToMonitor.left"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveWorkspaceToMonitor.right"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveWorkspaceToMonitor.up"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveWorkspaceToMonitor.down"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveWindowToMonitor.left"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveWindowToMonitor.right"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveWindowToMonitor.up"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveWindowToMonitor.down"
+
+[[hotkeys]]
+binding = "Control+Option+Return"
 id = "toggleFullscreen"
 
 [[hotkeys]]
@@ -479,6 +705,14 @@ id = "moveColumn.left"
 [[hotkeys]]
 binding = "Control+Option+Shift+Right Arrow"
 id = "moveColumn.right"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveColumn.up"
+
+[[hotkeys]]
+binding = "Unassigned"
+id = "moveColumn.down"
 
 [[hotkeys]]
 binding = "Control+Option+Home"
@@ -610,63 +844,63 @@ id = "moveColumnToIndex.9"
 
 [[hotkeys]]
 binding = "Hyper+Z"
-id = "cycleColumnWidthForward"
+id = "cycleSizeForward"
 
 [[hotkeys]]
 binding = "Hyper+X"
-id = "cycleColumnWidthBackward"
+id = "cycleSizeBackward"
 
 [[hotkeys]]
 binding = "Unassigned"
-id = "cycleWindowWidthForward"
+id = "cycleWindowPrimarySpanForward"
 
 [[hotkeys]]
 binding = "Unassigned"
-id = "cycleWindowWidthBackward"
+id = "cycleWindowPrimarySpanBackward"
 
 [[hotkeys]]
 binding = "Unassigned"
-id = "cycleWindowHeightForward"
+id = "cycleWindowSecondarySpanForward"
 
 [[hotkeys]]
 binding = "Unassigned"
-id = "cycleWindowHeightBackward"
+id = "cycleWindowSecondarySpanBackward"
 
 [[hotkeys]]
 binding = "Option+Shift+F"
-id = "toggleColumnFullWidth"
+id = "toggleContainerFullPrimarySpan"
 
 [[hotkeys]]
 binding = "Control+Option+F"
-id = "expandColumnToAvailableWidth"
+id = "expandContainerToAvailablePrimarySpan"
 
 [[hotkeys]]
 binding = "Control+Option+R"
-id = "resetWindowHeight"
+id = "resetWindowSecondarySpan"
 
 [[hotkeys]]
 binding = "Unassigned"
-id = "setColumnWidth.decrease10Percent"
+id = "setContainerPrimarySpan.decrease10Percent"
 
 [[hotkeys]]
 binding = "Unassigned"
-id = "setColumnWidth.increase10Percent"
+id = "setContainerPrimarySpan.increase10Percent"
 
 [[hotkeys]]
 binding = "Unassigned"
-id = "setWindowWidth.decrease10Percent"
+id = "setWindowPrimarySpan.decrease10Percent"
 
 [[hotkeys]]
 binding = "Unassigned"
-id = "setWindowWidth.increase10Percent"
+id = "setWindowPrimarySpan.increase10Percent"
 
 [[hotkeys]]
 binding = "Unassigned"
-id = "setWindowHeight.decrease10Percent"
+id = "setWindowSecondarySpan.decrease10Percent"
 
 [[hotkeys]]
 binding = "Unassigned"
-id = "setWindowHeight.increase10Percent"
+id = "setWindowSecondarySpan.increase10Percent"
 
 [[hotkeys]]
 binding = "Hyper+B"
@@ -686,35 +920,19 @@ id = "swapSplit"
 
 [[hotkeys]]
 binding = "Unassigned"
-id = "resizeGrow.left"
+id = "resizeGrow.horizontal"
 
 [[hotkeys]]
 binding = "Unassigned"
-id = "resizeGrow.right"
+id = "resizeGrow.vertical"
 
 [[hotkeys]]
 binding = "Unassigned"
-id = "resizeGrow.up"
+id = "resizeShrink.horizontal"
 
 [[hotkeys]]
 binding = "Unassigned"
-id = "resizeGrow.down"
-
-[[hotkeys]]
-binding = "Unassigned"
-id = "resizeShrink.left"
-
-[[hotkeys]]
-binding = "Unassigned"
-id = "resizeShrink.right"
-
-[[hotkeys]]
-binding = "Unassigned"
-id = "resizeShrink.up"
-
-[[hotkeys]]
-binding = "Unassigned"
-id = "resizeShrink.down"
+id = "resizeShrink.vertical"
 
 [[hotkeys]]
 binding = "Hyper+Equal"
@@ -757,16 +975,12 @@ binding = "Hyper+F"
 id = "rescueOffscreenWindows"
 
 [[hotkeys]]
-binding = "Unassigned"
+binding = "Hyper+A"
 id = "toggleFocusedWindowFloating"
 
 [[hotkeys]]
 binding = "Unassigned"
-id = "assignFocusedWindowToScratchpad"
-
-[[hotkeys]]
-binding = "Unassigned"
-id = "toggleScratchpadWindow"
+id = "closeFocusedWindow"
 
 [[hotkeys]]
 binding = "Control+Option+M"
@@ -778,7 +992,7 @@ id = "toggleWorkspaceBarVisibility"
 
 [[hotkeys]]
 binding = "Unassigned"
-id = "toggleHiddenBar"
+id = "toggleHiddenBarPanel"
 
 [[hotkeys]]
 binding = "Hyper+0"
@@ -795,12 +1009,6 @@ id = "toggleOverview"
 [[hotkeys]]
 binding = "Hyper+S"
 id = "toggleSystemStats"
-
-[[monitorGapOverrides]]
-id = "40697754-7167-4EC6-BC63-736142EF4E0A"
-monitorDisplayId = 1
-monitorName = "Built-in Retina Display"
-outerGapLeft = 0.0
 
 [[workspaces]]
 id = "AD36F001-C57E-41A5-AC1D-DF5249D007F0"
@@ -843,6 +1051,7 @@ name = "5"
 type = "main"
 
 [[workspaces]]
+displayName = "❤️"
 id = "5953F2BF-A378-4266-91B2-287174C4FA4D"
 layoutType = "niri"
 name = "6"
@@ -851,9 +1060,26 @@ name = "6"
 type = "secondary"
 
 [[workspaces]]
+displayName = "🚀"
 id = "A7D5E104-6985-4516-8ED5-07F144F2A33D"
 layoutType = "niri"
 name = "7"
 
 [workspaces.monitorAssignment]
 type = "secondary"
+
+[[workspaces]]
+id = "0E18F6B0-345A-4078-8B21-33641F07A861"
+layoutType = "niri"
+name = "8"
+
+[workspaces.monitorAssignment]
+type = "main"
+
+[[workspaces]]
+id = "8D4D711C-2B2F-4FEC-86BF-FA952037738A"
+layoutType = "niri"
+name = "9"
+
+[workspaces.monitorAssignment]
+type = "main"

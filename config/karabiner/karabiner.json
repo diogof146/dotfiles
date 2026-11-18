@@ -4,6 +4,42 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Mb5 key as Hyper (⌃⌥⌘⇧)",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "modifiers": { "optional": ["any"] },
+                                    "pointing_button": "button5"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_command",
+                                        "modifiers": ["left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Mb4 key as Hyper (⌃⌥⌘⇧)",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "modifiers": { "optional": ["any"] },
+                                    "pointing_button": "button4"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "left_shift",
+                                        "modifiers": ["left_control", "left_option", "left_command"]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "§ key as Hyper (⌃⌥⌘⇧)",
                         "manipulators": [
                             {
@@ -23,6 +59,16 @@
                     }
                 ]
             },
+            "devices": [
+                {
+                    "identifiers": {
+                        "is_pointing_device": true,
+                        "product_id": 50503,
+                        "vendor_id": 1133
+                    },
+                    "ignore": false
+                }
+            ],
             "name": "Default profile",
             "selected": true,
             "virtual_hid_keyboard": {
