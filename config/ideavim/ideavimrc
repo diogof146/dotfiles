@@ -1,0 +1,202 @@
+" -- Leader keys
+let mapleader = " "
+let maplocalleader = ","
+
+" -- Key ownership (Vim vs IDE) for keys the IDE also binds --
+" Insert-mode Tab stays with the IDE so completion, live templates and Copilot accept still work
+sethandler <Tab> n-v:vim i:ide
+sethandler <S-Tab> n-v:vim i:ide
+sethandler <C-r> a:vim
+sethandler <C-h> a:vim
+
+" -- IdeaVim built-in Vim-plugin emulations (bundled, no extra plugin) --
+" Map exchange / replace-with-register to the substitute.nvim keys *before* enabling them,
+" so they skip their default keys (cx/cxx/cxc and gr/grr), which would clash with c and gr
+nmap sx <Plug>(Exchange)
+nmap sxx <Plug>(ExchangeLine)
+nmap sxc <Plug>(ExchangeClear)
+xmap X <Plug>(Exchange)
+nmap s <Plug>ReplaceWithRegisterOperator
+nmap ss <Plug>ReplaceWithRegisterLine
+nmap sS <Plug>ReplaceWithRegisterOperator$
+xmap s <Plug>ReplaceWithRegisterVisual
+
+set surround               " nvim-surround equivalent: ys/cs/ds work identically
+set commentary              " gcc / gc{motion} commenting
+set exchange                 " substitute.nvim's exchange (sx / sxx / sxc / X)
+set ReplaceWithRegister      " substitute.nvim's substitute (s / ss / sS / visual s)
+set argtextobj              " ia / aa text objects for function args
+set NERDTree                " NERDTree-style keys inside the Project tool window
+set highlightedyank          " flash yanked text (undo-glow equivalent)
+
+" -- Core editor options (options.lua) --
+set number
+set relativenumber
+set scrolloff=5
+set incsearch
+set hlsearch
+set ideajoin                 " smarter J join using IDE's own logic
+set clipboard+=unnamed
+set clipboard+=ideaput
+set idearefactormode=keep    " stay in the current mode after IDE refactorings (e.g. rename)
+
+" ============================================================
+" General keymaps
+" ============================================================
+
+" Indent/unindent selection, keep selection active
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
+" Swap redo/undo-line
+nnoremap U <C-r>
+nnoremap <C-r> U
+
+" Swap b/q (macro record vs. word-back)
+nnoremap b q
+nnoremap q b
+
+" gg/G include start/end of line
+nnoremap gg gg0
+nnoremap G G$
+
+" Global word-under-cursor replace with confirm — IdeaVim emulates :%s
+" directly, so this is a literal port
+nnoremap <leader>r :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
+
+" Previous buffer
+nnoremap <leader>b :bp<CR>
+
+" Delete without yanking (blackhole register)
+nnoremap d "_d
+vnoremap d "_d
+nnoremap D "_D
+vnoremap D "_D
+nnoremap x "_x
+vnoremap x "_x
+nnoremap S "_cc
+
+" c = cut: delete into the clipboard without entering insert mode (autocmds.lua)
+nnoremap c d
+nnoremap cc dd
+nnoremap C D
+xnoremap c d
+
+" ============================================================
+" "LSP" keymaps
+" ============================================================
+
+nnoremap gd <Action>(GotoDeclaration)
+nnoremap gD <Action>(GotoDeclaration)
+nnoremap gt <Action>(GotoTypeDeclaration)
+nnoremap gi <Action>(GotoImplementation)
+nnoremap gr <Action>(FindUsages)
+
+nnoremap K <Action>(QuickJavaDoc)
+nnoremap <C-h> <Action>(ParameterInfo)
+inoremap <C-h> <Action>(ParameterInfo)
+
+nnoremap <leader>ca <Action>(ShowIntentionActions)
+nnoremap <localleader>r <Action>(RenameElement)
+
+nnoremap <leader>ds <Action>(FileStructurePopup)
+nnoremap <leader>ws <Action>(GotoSymbol)
+
+nnoremap <leader>dg <Action>(ShowErrorDescription)
+nnoremap <Leader>jd <Action>(GotoNextError)
+nnoremap <Leader>kd <Action>(GotoPreviousError)
+nnoremap <leader>dq <Action>(ActivateProblemsViewToolWindow)
+
+" none-ls.lua -> format buffer
+nnoremap <leader>gf <Action>(ReformatCode)
+
+" ============================================================
+" treesitter.lua / ts-textobjects.lua -> folds and method jumps
+" ============================================================
+
+nnoremap <leader>h za
+nnoremap <Leader>jf <Action>(MethodDown)
+nnoremap <Leader>kf <Action>(MethodUp)
+
+" ============================================================
+" telescope.lua -> Android Studio's built-in search
+" ============================================================
+
+nnoremap <leader>ff <Action>(GotoFile)
+nnoremap <leader>fg <Action>(FindInPath)
+nnoremap <leader>fw <Action>(FindInPath)
+nnoremap <leader>fb <Action>(Switcher)
+nnoremap <leader>fh <Action>(HelpTopics)
+nnoremap <leader>fr <Action>(RecentFiles)
+nnoremap <leader>fc <Action>(Find)
+nnoremap <leader>fd <Action>(ActivateProblemsViewToolWindow)
+nnoremap <leader>fs <Action>(FileStructurePopup)
+nnoremap <leader>fk <Action>(GotoAction)
+
+" ============================================================
+" leap.lua -> no bundled equivalent
+" ============================================================
+
+" Install the AceJump plugin, then uncomment:
+" nnoremap f <Action>(AceAction)
+
+" ============================================================
+" neo_tree.lua -> Project tool window
+" ============================================================
+
+nnoremap <leader>n <Action>(ActivateProjectToolWindow)
+
+" ============================================================
+" gitsigns.lua -> VCS gutter actions
+" ============================================================
+
+nnoremap <localleader>gb <Action>(Annotate)
+nnoremap <localleader>gp <Action>(VcsShowCurrentChangeMarker)
+nnoremap <localleader>gd <Action>(Compare.SameVersion)
+nnoremap <localleader>jh <Action>(VcsShowNextChangeMarker)
+nnoremap <localleader>kh <Action>(VcsShowPrevChangeMarker)
+nnoremap <localleader>hr <Action>(Vcs.RollbackChangedLines)
+
+" ============================================================
+" toggleterm.lua
+" ============================================================
+
+nnoremap <F5> <Action>(ActivateTerminalToolWindow)
+nnoremap <F6> <Action>(Run)
+
+" ============================================================
+" mini_move.lua -> Move line/statement up/down, indent left/right
+" ============================================================
+
+nnoremap <A-j> <Action>(MoveLineDown)
+nnoremap <A-k> <Action>(MoveLineUp)
+vnoremap <A-j> <Action>(MoveStatementDown)
+vnoremap <A-k> <Action>(MoveStatementUp)
+nnoremap <A-h> <<
+nnoremap <A-l> >>
+vnoremap <A-h> <gv
+vnoremap <A-l> >gv
+
+" macOS: Option+letter types a character instead of sending Alt, so the <A-...> maps above
+" never fire. These are the characters the Portuguese layout produces for Option+j/k/h/l.
+nnoremap ¯ <Action>(MoveLineDown)
+nnoremap „ <Action>(MoveLineUp)
+vnoremap ¯ <Action>(MoveStatementDown)
+vnoremap „ <Action>(MoveStatementUp)
+nnoremap ˇ <<
+nnoremap ‘ >>
+vnoremap ˇ <gv
+vnoremap ‘ >gv
+
+" ============================================================
+" window_manager.lua
+" ============================================================
+
+" The Project tree isn't a Vim window here, so <leader>wh focuses it directly
+" (<C-w>h still moves between editor splits). Esc in the tree returns to the editor.
+nnoremap <leader>wh <Action>(ActivateProjectToolWindow)
+nnoremap <leader>wj <C-w>j
+nnoremap <leader>wk <C-w>k
+nnoremap <leader>wl <C-w>l
+nnoremap <leader>wv <Action>(SplitVertically)
+" (<leader>w= has no equivalent: IdeaVim doesn't support <C-w>=)
